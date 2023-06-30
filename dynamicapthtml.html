@@ -4,105 +4,101 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <title>Booking Appointment App</title>
     <style>
-        body {
+		body {
+			font-family: Arial, sans-serif;
+			background-color: rgb(61, 175, 118);
+		}
+		
+		form {
+			background-color: lightblue;
+			max-width: 500px;
+			margin: 0 auto;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
+		
+		h1 {
+			text-align: center;
+			color: #333;
+		}
+		
+		label {
+			display: block;
+			margin-bottom: 5px;
+			color: #555;
+		}
 
-
-  background-image: url(pexels-photo-1222561.webp);
-
-  /* height of the image */
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-  box-sizing: border-box;
-}
-
-.wrapper {
-    width: 550px;
-    margin: 100px auto 0px auto;
-    background-color: white;
-    border-radius: 10px;
+        ul {
+            list-style: none;
+        }
   
- 
-}
+        ul li {
+    padding: 5px;
+    background: #f4f4f4;
+    margin-bottom: 20px;
+    border-radius: 5px;
+        }
+  
+  
+  	
+		input[type="text"],
+		input[type="email"],
+		input[type="tel"] {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 20px;
+			border-radius: 5px;
+			border: none;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+		}
+		
+		input[type="submit"] {
+			background-color: #333;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+		
+		input[type="submit"]:hover {
+			background-color: #555;
+		}
 
-h2{
-    text-align: center;
-    padding: 10px;
-}
-p{
-    text-align: center;
-    padding: 10px;
-}
 
-
-.register{
-    background-color: rgba(13, 12, 8, 0.6);
-    border-radius: 10px;
-    border: 1px solid black;
-    box-shadow: 3px;
-}
-.container{
-    margin: 40px;
-    font-size: 17px;
-}
-#Name,#Email,#Phone{
-    width: 480px;
-}
-
-#date,#time{
-    width: 232px;
-}
-#submit{
-width: 480px;
-padding: 3px;
-}
-#submit:hover{
-    background-color: orange;
-    cursor: pointer;
-}
     </style>
 
 
 </head>
 <body>
-    <div class="wrapper" >
-            <div class="register" id="ddd">
-            
-                <form  class="container"  onsubmit="myfunc(event)">
-                    <h2>Book a call</h2>
-                <p>Book a call and our representative will call you within the selected time
-                     </p><br>
-                    <label for="Names">Name: </label><br>
-        <input type="text" name="Name" id="Name" placeholder="enter your name"><br><br>
-    
-        <label for="Emails">Email: </label><br>
-        <input type="email" name="Name"id="Email" placeholder="enter your email"><br><br>
-        
-        <label for="Phones">Phone: </label><br>
-        <input type="number" name="Phone"id="Phone" placeholder="enter your number"><br><br>
-    
-        <!-- <label for="dates">Time for call: </label><br>
-        <input type="date" name="date"id="date">
-        <input type="time" name="time" id="time"><br><br> -->
-        <input type="submit" name="submit" id="submit" value="Submit" ><br><br>
-    
-      
-    
-                </form>
-            </div>
-            
 
-    </div>
+    <h1>Booking Information Form</h1>
+	<form id="myForm" class="my-form">
+		<label for="first-name">First Name:</label>
+		<input type="text" id="first-name" name="first-name" required><br>
 
-    <script src="form.js"></script>
+		<label for="last-name">Last Name:</label>
+		<input type="text" id="last-name" name="last-name" required><br>
+
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required><br>
+
+		<label for="phone">Phone Number:</label>
+		<input type="tel" id="phone" name="phone" required><br>
+
+		<input type="submit" value="Submit">
+	</form>
+
+    <h2 class="title">Registered Members</h2>
+    <ul id="items" class="list-group">
+    </ul>
+
+    
+    <script src="dynamicapt.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
 </body>
 </html>

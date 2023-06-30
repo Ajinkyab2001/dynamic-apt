@@ -1,53 +1,60 @@
-function myfunc(event){
-    event.preventDefault();
-     var myobj = {
-        full_name : document.getElementById("Name").value,
-        email_id : document.getElementById("Email").value,
-        phone_no : document.getElementById("Phone").value,
-        // dates : document.getElementById("date").value,
-        // times : document.getElementById("time").value,
-     }
-   
-     let user_records = [];
-   
-     user_records.push({
-        "user_details": myobj,
-     
-      })
-
-    axios.post('https://crudcrud.com/api/823e9715924148e9920c298f9e0f36ee/appointmentdata',myobj)
-    .then((response) => console.log(response))
-    .catch(err => console.log(err))
-
-      showUserOnScreen(myobj)
-
+// Retrieve the form element and add a submit event listener
+document.getElementById("myForm").addEventListener("submit", function(event) {
+    // event.preventDefault(); // Prevent form submission
+    // Get the form data
+    const firstName = document.getElementById("first-name").value;
+    const lastName = document.getElementById("last-name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    // Create a unique key for the user object
+    //let key = "user_" + Date.now(); // Using current timestamp as a unique identifier
+    // Create a user object
+    const user = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone
+    };
+    // Store the user object in local storage with the unique key
+    //localStorage.setItem(key, JSON.stringify(user));
+    // Clear the form fields
+    //document.getElementById("myForm").reset();
+    axios.post("https://crudcrud.com/api/54f216c68a2a4e02af4c40b79fb9cce9/appointmentdata", user)
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+    // Reload the booked members list to display the updated list
+    loadBookedMembers();
+});
+// Function to load booked members from local storage and display in the list
+function loadBookedMembers() {
+   // Get the list of registered members
+   axios.get("https://crudcrud.com/api/54f216c68a2a4e02af4c40b79fb9cce9/appointmentdata")
+   .then((response) => {
+       const itemsList = document.getElementById("items");
+       itemsList.innerHTML = ""; // Clear the existing list
+       // Loop through the list of members and display them on the page
+       response.data.forEach((user) => {
+           const li = document.createElement("li");
+           li.classList.add("list-group-item");
+           li.innerHTML = `
+               <div>Name: ${user.firstName} ${user.lastName}</div>
+               <div>Email: ${user.email}</div>
+               <div>Phone: ${user.phone}</div>
+           `;
+           itemsList.appendChild(li);
+       });
+   })
+   .catch((err) => {
+       console.log(err);
+   });
 }
-function showUserOnScreen(myobj){
-    const parentElem = document.getElementById('ddd');
-    const childElem = document.createElement('div');
-    childElem.textContent = myobj.full_name +' '+myobj.email_id+' ';
 
-    const deleteButton = document.createElement('input')
-    deleteButton.type = "button"
-    deleteButton.value = 'delete'
-    deleteButton.onclick = () => {
-        // localStorage.removeItem(myobj.email_id)
-        // parentElem.removeChild(childElem)
-    }
-
-    const edit = document.createElement('input')
-    edit.type = "button"
-    edit.value = 'edit'
-    edit.onclick = () => {
-        // localStorage.removeItem(myobj.email_id)
-        // parentElem.removeChild(childElem)
-        document.getElementById("Name").value = myobj.full_name
-        document.getElementById("Email").value = myobj.email_id
-    }
-
-     
-    childElem.appendChild(deleteButton)
-    childElem.appendChild(edit)
-
-    parentElem.appendChild(childElem);
-}
+// Initial load of booked members list when the page loads
+// loadBookedMembers();
+window.addEventListener("DOMContentLoaded", () => {
+    loadBookedMembers();
+})
