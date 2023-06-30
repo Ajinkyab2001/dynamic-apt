@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <style>
+        body {
+
+
+  background-image: url(pexels-photo-1222561.webp);
+
+  /* height of the image */
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper {
+    width: 550px;
+    margin: 100px auto 0px auto;
+    background-color: white;
+    border-radius: 10px;
+  
+ 
+}
+
+h2{
+    text-align: center;
+    padding: 10px;
+}
+p{
+    text-align: center;
+    padding: 10px;
+}
+
+
+.register{
+    background-color: rgba(13, 12, 8, 0.6);
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 3px;
+}
+.container{
+    margin: 40px;
+    font-size: 17px;
+}
+#Name,#Email,#Phone{
+    width: 480px;
+}
+
+#date,#time{
+    width: 232px;
+}
+#submit{
+width: 480px;
+padding: 3px;
+}
+#submit:hover{
+    background-color: orange;
+    cursor: pointer;
+}
+    </style>
+
+
+</head>
+<body>
+    <div class="wrapper" >
+            <div class="register" id="ddd">
+            
+                <form  class="container"  onsubmit="myfunc(event)">
+                    <h2>Book a call</h2>
+                <p>Book a call and our representative will call you within the selected time
+                     </p><br>
+                    <label for="Names">Name: </label><br>
+        <input type="text" name="Name" id="Name" placeholder="enter your name"><br><br>
+    
+        <label for="Emails">Email: </label><br>
+        <input type="email" name="Name"id="Email" placeholder="enter your email"><br><br>
+        
+        <label for="Phones">Phone: </label><br>
+        <input type="number" name="Phone"id="Phone" placeholder="enter your number"><br><br>
+    
+        <!-- <label for="dates">Time for call: </label><br>
+        <input type="date" name="date"id="date">
+        <input type="time" name="time" id="time"><br><br> -->
+        <input type="submit" name="submit" id="submit" value="Submit" ><br><br>
+    
+      
+    
+                </form>
+            </div>
+            
+
+    </div>
+
+    <script src="form.js"></script>
+</body>
+</html>
