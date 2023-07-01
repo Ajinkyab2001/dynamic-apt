@@ -45,6 +45,23 @@ function loadBookedMembers() {
                <div>Email: ${user.email}</div>
                <div>Phone: ${user.phone}</div>
            `;
+
+           const editButton = document.createElement("button");
+           editButton.className = "btn btn-primary btn-sm float-right edit";
+           editButton.textContent = "EDIT";
+           editButton.dataset.id = user._id;
+           editButton.addEventListener("click", function(event){
+            const userId = event.target.dataset.id;
+            axios.delete(`https://crudcrud.com/api/54f216c68a2a4e02af4c40b79fb9cce9/appointmentdata/${userId}`)
+            .then(() => {
+                li.remove();
+                document.getElementById("first-name").value = user.firstName;
+                document.getElementById("last-name").value = user.lastName;
+                document.getElementById("email").value = user.email;
+                document.getElementById("phone").value = user.phone;
+            })
+           })
+
            const deleteButton = document.createElement("button");
            deleteButton.className = "btn btn-danger btn-sm float-right delete";
            deleteButton.textContent = "DELETE";
@@ -61,6 +78,8 @@ function loadBookedMembers() {
                 console.log(err);
             })
            })
+
+           li.appendChild(editButton);
 
            li.appendChild(deleteButton);
            itemsList.appendChild(li);
